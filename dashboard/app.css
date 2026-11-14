@@ -1,6 +1,7 @@
-/* Token Radar's console theme, radar-4. A dark canvas, one teal accent, and
-   hairlines where cards would be. Two type families, two corner radii and
-   seven spacing steps carry the whole look; nothing else is decorative. */
+/* Token Radar's console theme, radar-5 with the radar-6 age curve. A dark
+   canvas, one teal accent, and hairlines where cards would be. Two type
+   families, two corner radii and seven spacing steps carry the whole look;
+   nothing else is decorative. */
 :root {
   --canvas: #0a0e11;
   --panel: #10181c;
@@ -127,6 +128,20 @@ tbody tr[data-selected="true"] { background: var(--wash); }
 .button { min-height: 36px; padding: 0 var(--s4); border: 1px solid var(--line); border-radius: var(--r-control); background: var(--panel); color: var(--ink); }
 .button.primary { background: var(--accent); border-color: var(--accent); color: #06191a; font-weight: 600; }
 
+/* The age curve panel: one row per age bucket, the label on the left, the
+   token rate as a bar, the rate beside it, and the bucket's size, shrunk
+   rate and factor underneath. The bars climb from the youngest bucket to
+   the oldest, so the panel is the age factor's evidence at a glance. */
+.agecurve { display: grid; gap: var(--s3); padding: var(--s4); border: 1px solid var(--line); border-radius: var(--r-panel); background: var(--lift); }
+.agecurve h3 { font-size: 15px; }
+.agecurve .sub { max-width: 72ch; }
+.age-row { display: grid; grid-template-columns: 130px minmax(0, 1fr) 120px; gap: var(--s2) var(--s3); align-items: center; }
+.age-lab { font-size: 13px; white-space: nowrap; }
+.age-track { height: 10px; border-radius: 5px; background: var(--line); overflow: hidden; }
+.age-fill { display: block; height: 100%; background: var(--accent); }
+.age-num { font-family: var(--mono); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.age-meta { grid-column: 2 / -1; color: var(--dim); font-size: 12px; font-family: var(--mono); }
+
 .detail {
   position: fixed; top: 0; right: 0; bottom: 0; width: min(560px, 94vw); z-index: 10;
   background: var(--panel); border-left: 1px solid var(--line); padding: var(--s5);
@@ -162,6 +177,7 @@ tbody tr[data-selected="true"] { background: var(--wash); }
   .facts { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: var(--s4); }
   .field input { min-width: 0; width: 100%; }
   .twin { grid-template-columns: 1fr; }
+  .age-row { grid-template-columns: 100px minmax(0, 1fr) 96px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
